@@ -18,10 +18,10 @@ end
 
 tasks = [
   { number: 1, status: 'New', pickup: [58, 17], delivery: [91, 28] },
-  { number: 1, status: 'New', pickup: [64, 20], delivery: [100, 17] },
-  { number: 1, status: 'New', pickup: [71, 31], delivery: [55, 32] },
-  { number: 1, status: 'New', pickup: [80, 40], delivery: [114, 5] },
-  { number: 1, status: 'New', pickup: [81, 37], delivery: [93, 30] }
+  { number: 2, status: 'New', pickup: [64, 20], delivery: [100, 17] },
+  { number: 3, status: 'New', pickup: [71, 31], delivery: [55, 32] },
+  { number: 4, status: 'New', pickup: [80, 40], delivery: [114, 5] },
+  { number: 5, status: 'New', pickup: [81, 37], delivery: [93, 30] }
 ]
 
 tasks.each do |task|
