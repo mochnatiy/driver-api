@@ -13,7 +13,7 @@ users = [
 ]
 
 users.each do |user|
-  # User.create!(token: user[:token], access_level: user[:access_level])
+  User.create!(token: user[:token], access_level: user[:access_level])
 end
 
 tasks = [

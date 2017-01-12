@@ -15,11 +15,12 @@ before do
   if request.body.size > 0
     request.body.rewind
     @params = JSON.parse(request.body.read)
-    logger.info @params
   end
 end
 
 before do
+  next if request.path_info == '/' 
+  
   begin
     @current_user = User.find_by(token: params['token'])
   rescue Mongoid::Errors::DocumentNotFound
@@ -33,7 +34,7 @@ end
 
 # Root url
 get '/' do
-  "Application is up: #{Time.now}"
+  'Application is up!'
 end
 
 # Create tasks by manager
