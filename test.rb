@@ -77,4 +77,62 @@ class AppTest < MiniTest::Unit::TestCase
     
     assert_equal JSON.parse(last_response.body), expected_result
   end
+  
+  def test_task_creation_by_manager
+    data = {
+      token: 'c1b643f56d14d5943861d6042567c278',
+      tasks: {
+        number: 500,
+        pickup: [99, 173],
+        delivery: [167, 215]
+      }
+    }
+      
+    post '/tasks', data.to_json, 'CONTENT_TYPE' => 'application/json'
+    
+    assert last_response.ok?
+    
+    expected_result = {
+      'result' => 'ok',
+      'message' => 'The task has been created'
+    }
+    
+    assert_equal JSON.parse(last_response.body), expected_result
+  end
+  
+  def test_task_assign_by_driver
+    data = {
+      token: 'e7dbeb877a9755ef64ae0eb70cab7ea7',
+      number: 100
+    }
+      
+    post '/tasks/pick', data.to_json, 'CONTENT_TYPE' => 'application/json'
+    
+    assert last_response.ok?
+    
+    expected_result = {
+      'result' => 'ok',
+      'message' => 'The task has been assigned to driver'
+    }
+    
+    assert_equal JSON.parse(last_response.body), expected_result
+  end
+  
+  def test_task_completion_by_driver
+    data = {
+      token: 'e7dbeb877a9755ef64ae0eb70cab7ea7',
+      number: 100
+    }
+      
+    post '/tasks/complete', data.to_json, 'CONTENT_TYPE' => 'application/json'
+    
+    assert last_response.ok?
+    
+    expected_result = {
+      'result' => 'ok',
+      'message' => 'The task has been completed by driver'
+    }
+    
+    assert_equal JSON.parse(last_response.body), expected_result
+  end
 end
